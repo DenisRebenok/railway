@@ -23,5 +23,33 @@
   <% end %>
 </p>
 
-<%= link_to 'Редактировать', edit_train_path(@train) %> |
-<%= link_to 'Назад', trains_path %>
+<p>
+  <strong>Всего вагонов:</strong>
+  <%= @train.wagons.count %> <br>
+  <% if @train.wagons.any? %>
+      <ul>
+        <li><%= "Плацкартных вагонов: #{@train.wagons_by_type(0).count}" %></li>
+        <li><%= "Купейных вагонов: #{@train.wagons_by_type(1).count}" %></li>
+      </ul>
+  <% else %>
+      Нет вагонов. <br>
+  <% end %>
+
+  <strong>Плацкартных мест: </strong>
+  <% if @train.wagons_by_type(0).any? %>
+    <%= "Вверхних: #{@train.upper_places_count(0)} / Нижних: #{@train.lower_places_count(0)}" %>
+
+  <% else %>
+    нет мест.
+  <% end %> <br>
+
+  <strong>Купейных мест: </strong>
+  <% if @train.wagons_by_type(1).any? %>
+    <%= "Вверхних: #{@train.upper_places_count(1)} / Нижних: #{@train.lower_places_count(1)}" %>
+<% else %>
+    нет мест.
+<% end %>
+  </p>
+
+  <%= link_to 'Редактировать', edit_train_path(@train) %> |
+  <%= link_to 'Назад', trains_path %>
