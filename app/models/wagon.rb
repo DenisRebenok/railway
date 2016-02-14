@@ -2,7 +2,7 @@ class Wagon < ActiveRecord::Base
   belongs_to :train
   validates :number, presence: true
   validates :number, uniqueness: { scope: :train }, unless: "train.nil?"
-  validates :type, presence: true
+  validates :wagon_type, presence: true
   validates :lower_places, :upper_places, presence: true
 
   before_validation :set_number
