@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Номер:</strong>
+  <%= @ticket.id %>
+</p>
+
+<p>
+  <strong>Поезд:</strong>
+  <% if @ticket.train %>
+      <%= @ticket.train.number %>
+  <% else %>
+      не указан
+  <% end %>
+</p>
+
+<p>
+  <strong>Станция отправления:</strong>
+  <% if @ticket.start_station %>
+      <%= @ticket.start_station.title %>
+  <% else %>
+      не указана
+  <% end %>
+</p>
+
+<p>
+  <strong>Станция прибытия:</strong>
+  <% if @ticket.end_station %>
+      <%= @ticket.end_station.title %>
+  <% else %>
+      не указана
+  <% end %>
+</p>
+
+
+<p>
+  <strong>Владелец:</strong>
+  <% if @ticket.user_name %>
+      <%= @ticket.user_name %>
+  <% else %>
+      не указан
+  <% end %>
+</p>
+
+<%= link_to 'Редактировать', edit_ticket_path(@ticket) %> |
+<%= link_to 'Назад', tickets_path %>

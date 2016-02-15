@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :trains
   resources :routes
   resources :wagons
+  resources :tickets
 
   get 'welcome/index'
 
