@@ -10,15 +10,9 @@ class Wagon < ActiveRecord::Base
   private
 
   def set_number
-    set_number! if train && (new_record? || changing_trains?)
-  end
-
-  def set_number!
-    last_number = train.wagons.maximum(:number)
-    self.number = last_number ? (last_number + 1) : 1
-  end
-
-  def changing_trains?
-    Wagon.find(id).train != train
+    if train && (new_record? || changed?)
+      last_number = train.wagons.maximum(:number)
+      self.number = last_number ? (last_number + 1) : 1
+    end
   end
 end

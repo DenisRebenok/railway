@@ -28,8 +28,8 @@
   <%= @train.wagons.count %> <br>
   <% if @train.wagons.any? %>
       <ul>
-        <li><%= "Плацкартных вагонов: #{@train.wagons_by_type(0).count}" %></li>
-        <li><%= "Купейных вагонов: #{@train.wagons_by_type(1).count}" %></li>
+        <li><%= "Плацкартных вагонов: #{@train.wagons_by_type(:econom).count}" %></li>
+        <li><%= "Купейных вагонов: #{@train.wagons_by_type(:coupe).count}" %></li>
       </ul>
   <% else %>
       Нет вагонов. <br>
@@ -37,7 +37,7 @@
 
   <strong>Плацкартных мест: </strong>
   <% if @train.wagons_by_type(0).any? %>
-    <%= "Вверхних: #{@train.upper_places_count(0)} / Нижних: #{@train.lower_places_count(0)}" %>
+    <%= "Вверхних: #{@train.upper_places_count(:econom)} / Нижних: #{@train.lower_places_count(0)}" %>
 
   <% else %>
     нет мест.
@@ -45,7 +45,7 @@
 
   <strong>Купейных мест: </strong>
   <% if @train.wagons_by_type(1).any? %>
-    <%= "Вверхних: #{@train.upper_places_count(1)} / Нижних: #{@train.lower_places_count(1)}" %>
+    <%= "Вверхних: #{@train.upper_places_count(:coupe)} / Нижних: #{@train.lower_places_count(1)}" %>
 <% else %>
     нет мест.
 <% end %>
