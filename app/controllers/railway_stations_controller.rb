@@ -1,5 +1,5 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_railway_station, except: [:index, :new, :create]
 
   def index
     @railway_stations = RailwayStation.all
@@ -38,12 +38,27 @@ class RailwayStationsController < ApplicationController
     redirect_to railway_stations_path
   end
 
+  def update_station_position
+    # Эта форма ведет либо на экшн update контроллера станций,
+    # либо можно сделать отдельный экшн для этого
+
+    # берем из params[:route_id] и загружаем маршрут.
+    @route = Route.find(params[:route_id])
+
+    # Само собой загружаем нужную станцию. Вызываем у станции метод update_position
+    # и передаем в нее загруженный маршрут и позицию из params.
+    @railway_station.update_position(@route, params[:position])
+
+    # Делаем редирект на @route, чтобы повторно отобразить список станций уже в нужном порядке.
+    redirect_to @route
+  end
+
   private
     def set_railway_station
       @railway_station = RailwayStation.find(params[:id])
     end
 
     def railway_station_params
-      params.require(:railway_station).permit(:title)
+      params.require(:railway_station).permit(:title, :route_id, :position)
     end
 end

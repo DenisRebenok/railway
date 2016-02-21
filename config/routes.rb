@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
   resources :railway_stations
   resources :trains
-  resources :routes
+  resources :routes do
+    resources :railway_stations_routes
+  end
   resources :wagons
   resources :tickets
 
   get 'welcome/index'
+  post 'routes/:id',
+       to: 'railway_stations#update_station_position',
+       as: 'update_station_position'
 
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
