@@ -6,11 +6,8 @@ class RailwayStation < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
 
   def update_position(route, position)
-    # Этот методо обновляет поле позиции в join-таблице для данной станции и маршрута.
     data = railway_stations_routes.find_by(route: route)
     data.update(position: position) if data
-    # Надо пересмотреть скринкаст и почитать о query interface.
-    # Ищем объект join-модели, указывая станцию и маршрут, и дальше обновляем у этого объекта поле позиции.
   end
 
 

@@ -39,17 +39,8 @@ class RailwayStationsController < ApplicationController
   end
 
   def update_station_position
-    # Эта форма ведет либо на экшн update контроллера станций,
-    # либо можно сделать отдельный экшн для этого
-
-    # берем из params[:route_id] и загружаем маршрут.
     @route = Route.find(params[:route_id])
-
-    # Само собой загружаем нужную станцию. Вызываем у станции метод update_position
-    # и передаем в нее загруженный маршрут и позицию из params.
     @railway_station.update_position(@route, params[:position])
-
-    # Делаем редирект на @route, чтобы повторно отобразить список станций уже в нужном порядке.
     redirect_to @route
   end
 

@@ -20,16 +20,6 @@
 
   <p>
     <strong>Станции маршрута:</strong>
-    <!--рядом с каждой станцией делаем маленькую форму, -->
-    <!--в которой есть только поле для ввода позиции и кнопка "сохранить". -->
-    <!--Эта форма ведет либо на экшн update контроллера станций, -->
-    <!--либо можно сделать отдельный экшн для этого (второй вариант предпочтительнее).-->
-
-    <!--В html есть атрибут action, в котором и записывается url, на который надо отправить форму,
-    в form_tag первым параметром задается не объект, а именно url, куда будет отправлена форма.
-    А сам url мы можем получить, используюя url-хелперы, которые нам предоставляет роутинг.
-    Например: form_tag update_position_station_path(@station)-->
-
     <table>
       <thead>
       <tr>
@@ -45,9 +35,7 @@
                 <td><%= station.title %></td>
                 <td>
                 <%= form_tag update_station_position_path(station) do %>
-                    <!--<td>-->
-                      <%= number_field_tag :position, station.position_in(@route) %>
-                    <!--</td>-->
+                    <%= number_field_tag :position, station.position_in(@route) %>
                     <%= hidden_field_tag :route_id, @route.id %>
                     <%= submit_tag 'Сохранить' %>
                 <% end %>
@@ -57,7 +45,6 @@
             <% end %>
       </tbody>
     </table>
-
   </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |

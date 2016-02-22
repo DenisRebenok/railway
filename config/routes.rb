@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :railway_stations_routes
   end
   resources :wagons
+  resources :coupe_wagons, :controller => 'wagons'
+  resources :sitting_wagons, :controller => 'wagons'
+  resources :economy_wagons, :controller => 'wagons'
+  resources :first_class_wagons, :controller => 'wagons'
   resources :tickets
 
   get 'welcome/index'
