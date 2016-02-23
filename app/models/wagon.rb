@@ -1,6 +1,6 @@
 class Wagon < ActiveRecord::Base
   belongs_to :train
-  validates :number, presence: true, uniqueness: { scope: :train }, unless: "train.nil?"
+  validates :number, presence: true, uniqueness: { scope: :train }, if: :train
   validates :lower_places, :upper_places,
             :side_lower_places, :side_upper_places,
             :sitting_places, numericality: { only_integer: true, allow_nil: true }
