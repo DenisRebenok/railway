@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Номер:</strong>
-  <%= @train.number %>
-</p>
+<h1>Поезд №<%= @train.number %></h1>
 
 <p>
 <strong>На станции:</strong>
@@ -23,33 +20,18 @@
   <% end %>
 </p>
 
+<strong>Вагоны:</strong>
 <p>
-  <strong>Всего вагонов:</strong>
-  <%= @train.wagons.count %> <br>
   <% if @train.wagons.any? %>
-      <ul>
-        <li><%= "Плацкартных вагонов: #{@train.wagons_by_type(:econom).count}" %></li>
-        <li><%= "Купейных вагонов: #{@train.wagons_by_type(:coupe).count}" %></li>
-      </ul>
+    <ul>
+    <% @train.wagons.ordered(@train.sort_from_head).each do |wagon| %>
+      <li><%= link_to "#{wagon.number}", wagon %></li>
+    <% end %>
+    </ul>
   <% else %>
-      Нет вагонов. <br>
+    нет
   <% end %>
+</p>
 
-  <strong>Плацкартных мест: </strong>
-  <% if @train.wagons_by_type(0).any? %>
-    <%= "Вверхних: #{@train.upper_places_count(:econom)} / Нижних: #{@train.lower_places_count(0)}" %>
-
-  <% else %>
-    нет мест.
-  <% end %> <br>
-
-  <strong>Купейных мест: </strong>
-  <% if @train.wagons_by_type(1).any? %>
-    <%= "Вверхних: #{@train.upper_places_count(:coupe)} / Нижних: #{@train.lower_places_count(1)}" %>
-<% else %>
-    нет мест.
-<% end %>
-  </p>
-
-  <%= link_to 'Редактировать', edit_train_path(@train) %> |
-  <%= link_to 'Назад', trains_path %>
+<%= link_to 'Редактировать', edit_train_path(@train) %> |
+<%= link_to 'Назад', trains_path %>
