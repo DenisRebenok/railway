@@ -1,20 +1,24 @@
 Rails.application.routes.draw do
-  resources :railway_stations
-  resources :trains
+  resources :railway_stations do
+    patch :update_position, on: :member
+    patch :update_arrival_departure, on: :member
+  end
+  resources :trains do
+    resources :wagons, shallow: true
+  end
   resources :routes do
     resources :railway_stations_routes
   end
-  resources :wagons
-  resources :coupe_wagons, :controller => 'wagons'
-  resources :sitting_wagons, :controller => 'wagons'
-  resources :economy_wagons, :controller => 'wagons'
-  resources :first_class_wagons, :controller => 'wagons'
-  resources :tickets
+  # resources :coupe_wagons, :controller => 'wagons'
+  # resources :sitting_wagons, :controller => 'wagons'
+  # resources :economy_wagons, :controller => 'wagons'
+  # resources :first_class_wagons, :controller => 'wagons'
 
-  get 'welcome/index'
-  post 'routes/:id',
-       to: 'railway_stations#update_station_position',
-       as: 'update_station_position'
+  resources :users do
+    resources :tickets, except: [:edit, :update]
+  end
+
+  resource :search, only: [:show]
 
   root 'welcome#index'
 

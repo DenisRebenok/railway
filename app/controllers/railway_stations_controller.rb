@@ -1,5 +1,6 @@
 class RailwayStationsController < ApplicationController
   before_action :set_railway_station, except: [:index, :new, :create]
+  before_action :set_route, only: [:update_position, :update_arrival_departure]
 
   def index
     @railway_stations = RailwayStation.all
@@ -38,10 +39,17 @@ class RailwayStationsController < ApplicationController
     redirect_to railway_stations_path
   end
 
-  def update_station_position
-    @route = Route.find(params[:route_id])
+  def update_position
     @railway_station.update_position(@route, params[:position])
     redirect_to @route
+  end
+
+  def update_arrival_departure
+    if @railway_station.update_time(@route, params[:arrival_time], params[:departure_time])
+      redirect_to @route
+    else
+      render :show
+    end
   end
 
   private
@@ -52,4 +60,8 @@ class RailwayStationsController < ApplicationController
     def railway_station_params
       params.require(:railway_station).permit(:title, :route_id, :position)
     end
+
+  def set_route
+    @route = Route.find(params[:route_id])
+  end
 end

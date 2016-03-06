@@ -1,28 +1,31 @@
-<%= form_for(@ticket) do |f| %>
-    <%= render 'common/errors', resource: @ticket %>
+<%= form_tag(user_tickets_path(@user)) do %>
+  <%= render 'common/errors', resource: @ticket %>
 
-    <div class="field">
-      <%= f.label 'Поезд' %>
-      <%= f.collection_select :train_id, Train.all, :id, :number %>
-    </div>
+  <div class="field">
+    <%= label_tag 'ticket[user_name]', 'ФИО пассажира' %><br>
+    <%= text_field_tag 'ticket[user_name]' %>
+  </div>
+
+  <div class="field">
+    <b>Поезд: </b> <%= @train.number %>
+  </div>
 
 
-    <div class="field">
-      <%= f.label 'Станция отправления' %>
-      <%= f.collection_select :start_station_id, RailwayStation.all, :id, :title %>
-    </div>
+  <div class="field">
+    <b>Станция отправления:</b> <%= @start_station.title %>
+  </div>
 
-    <div class="field">
-      <%= f.label 'Станция прибытия' %>
-      <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title %>
-    </div>
+  <div class="field">
+    <b>Станция прибытия:</b> <%= @end_station.title %>
+  </div>
 
-    <div class="field">
-      <%= f.label 'ФИО пассажира' %><br>
-      <%= f.text_field :user_name %>
-    </div>
+  <div class="field">
+    <%=	hidden_field_tag 'ticket[train_id]', @train.id %>
+    <%=	hidden_field_tag 'ticket[start_station_id]', @start_station.id %>
+    <%=	hidden_field_tag 'ticket[end_station_id]', @end_station.id %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "#{@ticket.new_record? ? 'Создать' : 'Изменить'}" %>
-    </div>
+  <div class="actions">
+    <%= submit_tag 'Создать' %>
+  </div>
 <% end %>

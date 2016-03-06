@@ -6,6 +6,15 @@
 </p>
 
 <p>
+  <strong>Пассажир:</strong>
+  <% if @ticket.user_name %>
+      <%= @ticket.user_name %>
+  <% else %>
+      не указан
+  <% end %>
+</p>
+
+<p>
   <strong>Поезд:</strong>
   <% if @ticket.train %>
       <%= @ticket.train.number %>
@@ -32,15 +41,14 @@
   <% end %>
 </p>
 
-
 <p>
-  <strong>Владелец:</strong>
-  <% if @ticket.user_name %>
-      <%= @ticket.user_name %>
-  <% else %>
-      не указан
-  <% end %>
+  <strong>Время отправления:</strong>
+  <%= @ticket.start_station.departure_time(@ticket.train) %>
 </p>
 
-<%= link_to 'Редактировать', edit_ticket_path(@ticket) %> |
-<%= link_to 'Назад', tickets_path %>
+<p>
+  <strong>Время прибытия:</strong>
+  <%= @ticket.start_station.arrive_time(@ticket.train) %>
+</p>
+
+<%= link_to 'Назад', user_tickets_path(@user) %>

@@ -5,22 +5,43 @@ class RailwayStation < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true
 
+  scope :ordered, -> { joins(:railway_stations_routes).order("railway_stations_routes.position").uniq }
+
   def update_position(route, position)
-    self.station_route ||= station_route_associated_model(route)
+    station_route = station_route(route)
     station_route.update(position: position) if station_route
   end
 
-
   def position_in(route)
-    self.station_route ||= station_route_associated_model(route)
-    station_route.position if station_route
+    station_route(route).try(:position)
+  end
+
+  def update_time(route, arrival_time, departure_time)
+    station_route = station_route(route)
+    if station_route
+      station_route.update(arrival_time: arrival_time, departure_time: departure_time)
+    end
+  end
+
+  def arrive_in(route)
+    station_route(route).try(:arrival_time)
+  end
+
+  def departure_in(route)
+    station_route(route).try(:departure_time)
+  end
+  
+  def arrive_time(train)
+    station_route(train.route).try(:arrival_time)
+  end
+
+  def departure_time(train)
+    station_route(train.route).try(:departure_time)
   end
 
   private
 
-  attr_accessor :station_route
-
-  def station_route_associated_model(route)
-    railway_stations_routes.find_by(route: route)
+  def station_route(route)
+    @station_route ||= railway_stations_routes.find_by(route: route)
   end
 end

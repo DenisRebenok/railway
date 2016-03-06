@@ -10,4 +10,12 @@ class Train < ActiveRecord::Base
   def places_count(wagon_type, place_type)
     wagons.where(wagon_type: wagon_type).sum("#{place_type}_places")
   end
+
+  # def arrive_time(station)
+  #   RailwayStationsRoute.where(railway_station_id: station.id).first.arrival_time
+  # end
+  #
+  # def departure_time(station)
+  #   RailwayStationsRoute.where(railway_station_id: station.id).first.departure_time
+  # end
 end

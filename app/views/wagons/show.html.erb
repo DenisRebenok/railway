@@ -2,29 +2,27 @@
 
 <h1><%= @wagon.type %> вагон №<%= @wagon.number %></h1>
 
-<p>
-<% if @wagon.lower_places %>
-    <p>
-      Нижних мест: <%= @wagon.lower_places %>
-    </p>
-<% end %>
-
-
 <% if @wagon.upper_places %>
     <p>
-      Верхних мест: <%= @wagon.upper_places %>
+      Верхних сидений: <%= @wagon.upper_places %>
     </p>
 <% end %>
 
-<% if @wagon.side_lower_places %>
+<% if @wagon.lower_places %>
     <p>
-      Нижних боковых мест: <%= @wagon.side_lower_places %>
+    Нижних сидений: <%= @wagon.lower_places %>
     </p>
 <% end %>
 
 <% if @wagon.side_upper_places %>
     <p>
-      Верхних боковых мест: <%= @wagon.side_upper_places %>
+      Верхних боковых сидений: <%= @wagon.side_upper_places %>
+    </p>
+<% end %>
+
+<% if @wagon.side_lower_places %>
+    <p>
+    Нижних боковых сидений: <%= @wagon.side_lower_places %>
     </p>
 <% end %>
 
@@ -41,5 +39,5 @@
     Еще не прицеплен.
 <% end %> <br>
 
-<%= link_to 'Редактировать', edit_wagon_path(@wagon) %> |
-<%= link_to 'Назад', wagons_path %>
+<!--link_to 'Редактировать', edit_wagon_path(@wagon)-->
+<%= link_to 'Назад', @wagon.train %>
