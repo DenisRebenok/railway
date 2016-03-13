@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'welcome#index'
+  root 'searches#show'
 
   namespace :admin do
     root 'welcome#index'

@@ -3,7 +3,7 @@
 <strong>Вагоны:</strong>
 <p>
   <% if @train.wagons.any? %>
-      <table>
+      <table class="table">
         <%= render partial: 'admin/wagons/table_header' %>
         <% @train.wagons.ordered(@train.sort_from_head).each do |wagon| %>
             <tr>
@@ -49,4 +49,4 @@
 </p>
 
 <%= link_to 'Редактировать', edit_admin_train_path(@train) %> |
-<%= link_to 'Назад', admin_trains_path %>
+<%= link_to t('common.back'), admin_trains_path %>
