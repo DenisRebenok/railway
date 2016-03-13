@@ -27,7 +27,7 @@
             <td><%= route.title %></td>
             <td><%= @start_station.departure_time(train) %></td>
             <td><%= @end_station.arrive_time(train) %></td>
-            <td><%= link_to "Купить", new_user_ticket_path(user_id: User.first, ticket: {start_station_id: @start_station.id, end_station_id: @end_station.id, train_id: train.id}) %></td>
+            <td><%= link_to "Купить", new_ticket_path(ticket: {start_station_id: @start_station.id, end_station_id: @end_station.id, train_id: train.id}) %></td>
           </tr>
         <% end %>
       <% end %>

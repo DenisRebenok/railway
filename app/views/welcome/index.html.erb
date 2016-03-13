@@ -1,9 +1,8 @@
-<h1>Привет, Rails!</h1>
+<h1>Привет, <%= current_user ? current_user.email : 'Гость'  %>!</h1>
 
-<ul>
-  <li><%= link_to 'Поиск билетов', search_path %></li>
-  <li><%= link_to 'Список станций', railway_stations_path %></li>
-  <li><%= link_to 'Список поездов', trains_path %></li>
-  <li><%= link_to 'Список маршрутов', routes_path %></li>
-  <li><%= link_to 'Список билетов', user_tickets_path(User.first) %></li>
-</ul>
+  <% if user_signed_in? %>
+    <ul>
+      <li><%= link_to 'Поиск билетов', search_path %></li>
+      <li><%= link_to 'Мои билеты', tickets_path  %></li>
+    </ul>
+  <% end %>

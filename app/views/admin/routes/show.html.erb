@@ -1,0 +1,61 @@
+<%=	render 'common/errors', resource: @route %>
+
+<p>
+  <strong>Название:</strong> <%= @route.title %>
+</p>
+
+<p>
+  <strong>Станции:</strong>
+  <% if @stations.empty? %>
+    Список пуст
+  <% else %>
+    <table>
+      <thead>
+      <tr>
+        <td width="100px">Название</td>
+        <td>Позиция</td>
+        <td>Прибытие / Отправление</td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @stations.ordered.each do |station| %>
+          <tr>
+            <td><%= station.title %></td>
+            <td>
+              <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
+                  <%= number_field_tag :position, station.position_in(@route) %>
+                  <%= hidden_field_tag :route_id, @route.id %>
+                  <%= submit_tag 'Изменить' %>
+              <% end %>
+            </td>
+            <td>
+              <%= form_tag update_arrival_departure_admin_railway_station_path(station), method: :patch do %>
+                <%= datetime_field_tag :arrival_time, station.arrive_in(@route) %>
+                <%= datetime_field_tag :departure_time, station.departure_in(@route) %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag 'Сохранить' %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</p>
+
+<p>
+<% if @trains.any? %>
+    <strong>Поезда на маршруте:</strong>
+      <ul>
+      <% @trains.each do |train| %>
+          <li><%= train.number %></li>
+      <% end %>
+        </ul>
+<% else %>
+      На маршруте поездов нет.
+<% end %>
+  </p>
+
+
+  <%= link_to 'Редактировать', edit_admin_route_path(@route) %> |
+  <%= link_to 'Назад', admin_routes_path %>

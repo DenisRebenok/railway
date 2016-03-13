@@ -1,0 +1,8 @@
+<h1>Список вагонов</h1>
+
+<table class="table">
+  <%= render partial: 'table_header' %>
+  <%= render partial: @wagon, as: :wagon %>
+</table>
+
+<%= link_to 'Добавить вагон', new_admin_train_wagon_path(@train) %>

@@ -1,0 +1,52 @@
+<h1>Поезд №<%= @train.number %></h1>
+
+<strong>Вагоны:</strong>
+<p>
+  <% if @train.wagons.any? %>
+      <table>
+        <%= render partial: 'admin/wagons/table_header' %>
+        <% @train.wagons.ordered(@train.sort_from_head).each do |wagon| %>
+            <tr>
+              <td><%= wagon.train.number %></td>
+              <td><%= wagon.number %></td>
+              <td><%= wagon.type %></td>
+              <td><%= wagon.upper_places %></td>
+              <td><%= wagon.lower_places %></td>
+              <td><%= wagon.side_upper_places %></td>
+              <td><%= wagon.side_lower_places %></td>
+              <td><%= wagon.sitting_places %></td>
+              <td><%= link_to 'Перейти', admin_wagon_path(wagon) %></td>
+              <td><%= link_to 'Редактировать', edit_admin_wagon_path(wagon) %></td>
+              <td><%= link_to 'Удалить', admin_wagon_path(wagon), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+            </tr>
+        <% end %>
+      </table>
+<% else %>
+    нет
+<% end %>
+</p>
+
+<p>
+  <%= link_to 'Добавить вагон', new_admin_train_wagon_path(@train) %>
+</p>
+
+<p>
+<strong>На станции:</strong>
+<% if @train.current_station %>
+      <%=	@train.current_station.title %>
+<% else %>
+      Не указано
+<% end %>
+</p>
+
+<p>
+<% if @train.route %>
+      <strong>Маршрут:</strong>
+      <%= @train.route.title %>
+<% else %>
+      Маршрут не назначен
+<% end %>
+</p>
+
+<%= link_to 'Редактировать', edit_admin_train_path(@train) %> |
+<%= link_to 'Назад', admin_trains_path %>
