@@ -3,7 +3,7 @@
 <strong>Вагоны:</strong>
 <p>
   <% if @train.wagons.any? %>
-      <table>
+      <table class="table table-condensed">
         <%= render partial: 'admin/wagons/table_header' %>
         <% @train.wagons.ordered(@train.sort_from_head).each do |wagon| %>
             <tr>
@@ -15,9 +15,9 @@
               <td><%= wagon.side_upper_places %></td>
               <td><%= wagon.side_lower_places %></td>
               <td><%= wagon.sitting_places %></td>
-              <td><%= link_to 'Перейти', admin_wagon_path(wagon) %></td>
-              <td><%= link_to 'Редактировать', edit_admin_wagon_path(wagon) %></td>
-              <td><%= link_to 'Удалить', admin_wagon_path(wagon), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+              <td><%= link_to t('common.show'), admin_wagon_path(wagon) %></td>
+              <td><%= link_to t('common.edit'), edit_admin_wagon_path(wagon) %></td>
+              <td><%= link_to t('common.delete'), admin_wagon_path(wagon), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
             </tr>
         <% end %>
       </table>
@@ -48,5 +48,5 @@
 <% end %>
 </p>
 
-<%= link_to 'Редактировать', edit_admin_train_path(@train) %> |
-<%= link_to 'Назад', admin_trains_path %>
+<%= link_to t('common.edit'), edit_admin_train_path(@train) %> |
+<%= link_to t('common.back'), admin_trains_path %>

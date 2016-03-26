@@ -1,18 +1,22 @@
 <h1>Поиск билета</h1>
 
-<p>
+<div class="row">
   <%= form_tag search_path, method: :get do %>
-    <%= label_tag :start_station_id, 'Станция отправления' %>
-    <%= collection_select(:start_station_id, nil, @stations, :id, :title) %> <br>
-    <%= label_tag :end_station_id, 'Станция прибытия' %>
-    <%= collection_select(:end_station_id, nil, @stations, :id, :title) %>
-    <%= submit_tag 'Найти' %>
+      <div class="col-md-4">
+        <%= select_tag :start_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= select_tag :end_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= submit_tag "Найти", class: 'btn btn-primary' %>
+      </div>
   <% end %>
-</p>
+</div>
 
 <p>
   <% if @routes %>
-    <table>
+    <table class="table">
       <tr>
         <th>Поезд</th>
         <th>Маршрут</th>
