@@ -1,8 +1,17 @@
-<p id="notice"><%= notice %></p>
+<p>Билет купил: <%= @ticket.user.email %></p>
 
 <p>
   <strong>Номер:</strong>
   <%= @ticket.id %>
+</p>
+
+<p>
+  <strong>Пассажир:</strong>
+  <% if @ticket.user_name %>
+      <%= @ticket.user_name %>
+  <% else %>
+      не указан
+  <% end %>
 </p>
 
 <p>
@@ -32,15 +41,14 @@
   <% end %>
 </p>
 
-
 <p>
-  <strong>Владелец:</strong>
-  <% if @ticket.user_name %>
-      <%= @ticket.user_name %>
-  <% else %>
-      не указан
-  <% end %>
+  <strong>Время отправления:</strong>
+  <%= @ticket.start_station.departure_time(@ticket.train) %>
 </p>
 
-<%= link_to 'Редактировать', edit_ticket_path(@ticket) %> |
-<%= link_to 'Назад', tickets_path %>
+<p>
+  <strong>Время прибытия:</strong>
+  <%= @ticket.start_station.arrive_time(@ticket.train) %>
+</p>
+
+<%= link_to t('common.back'), tickets_path %>
