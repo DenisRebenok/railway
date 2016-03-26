@@ -1,0 +1,26 @@
+ru:
+  activerecord:
+    models:
+      railway_station: 'Станция'
+      train: 'Поезд'
+      route: 'Маршрут'
+      ticket: 'Билет'
+      wagon: 'Вагон'
+      user: 'Пользователь'
+    attributes:
+      railway_station:
+        title: 'Название'
+      train:
+        number: 'Номер'
+        route_id: 'Маршрут'
+        current_station: 'Текущая станция'
+        route: 'Текущий маршрут'
+      ticket:
+        user_name: 'Имя Фамилия'
+    errors:
+      messages:
+        blank: 'не может быть пустым'
+      models:
+        railway_station:
+          attributes:
+            blank: 'необходимо указать'

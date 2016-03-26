@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p>Билет купил: <%= @ticket.user.email %></p>
 
 <p>
   <strong>Номер:</strong>
@@ -51,4 +51,4 @@
   <%= @ticket.start_station.arrive_time(@ticket.train) %>
 </p>
 
-<%= link_to 'Назад', user_tickets_path(@user) %>
+<%= link_to t('common.back'), tickets_path %>

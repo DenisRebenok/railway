@@ -1,0 +1,20 @@
+<h1>Билет</h1>
+
+<p><strong>Номер:</strong> <%= @ticket.id %></p>
+<p><strong>Пользователь:</strong> <%= @ticket.user.name %></p>
+<p><strong>ФИО:</strong> <%= @ticket.user_name %></p>
+<p><strong>Поезд:</strong> <%= "#{@ticket.train.present? ? @ticket.train.number : 'не указан'}" %></p>
+
+<p>
+  <strong>Станция отправления:</strong>
+  <%= "#{@ticket.start_station.present? ? @ticket.start_station.title : 'не указана'}" %>
+</p>
+
+<p>
+  <strong>Станция прибытия:</strong>
+  <%= "#{@ticket.end_station.present? ? @ticket.end_station.title : 'не указана'}" %>
+</p>
+
+<p>
+  <%= link_to t('common.edit'), edit_admin_ticket_path(@ticket) %> | <%= link_to 'Назад', admin_tickets_path %>
+</p>

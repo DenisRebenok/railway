@@ -1,5 +1,30 @@
 <h1>Создать билет</h1>
 
-<%= render 'form' %>
+<%= form_for(@ticket) do |f| %>
+    <%= render 'common/errors', resource: @ticket %>
 
-<%= link_to 'Назад', user_tickets_path(@user) %>
+    <div class="field">
+      <%= f.label :user_name %><br>
+      <%= f.text_field :user_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :train %>
+      <%= f.collection_select :train_id, Train.all, :id, :number %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :start_station %>
+      <%= f.collection_select :start_station_id, RailwayStation.all, :id, :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :end_station %>
+      <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Создать' %>
+    </div>
+<% end %>

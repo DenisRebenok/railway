@@ -4,6 +4,6 @@
   <td><%= ticket.start_station.title %></td>
   <td><%= ticket.end_station.title %></td>
   <td><%= ticket.user_name %></td>
-  <td><%= link_to 'Просмотреть', user_ticket_path() %></td>
-  <td><%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+  <td><%= link_to t('common.show'),ticket %></td>
+  <td><%= link_to t('common.delete'), ticket, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 </tr>
