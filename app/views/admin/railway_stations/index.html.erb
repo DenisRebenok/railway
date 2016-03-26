@@ -1,20 +1,13 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('.title') %></h1>
 
-<h1>Список станций</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Название</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render @railway_stations %>
-  </tbody>
+<table class="table table-condensed">
+  <tr>
+    <th>Название</th>
+    <th colspan="3"></th>
+  </tr>
+  <%= render @railway_stations %>
 </table>
 
 <br>
 
-<%= link_to 'Добавить станцию', new_admin_railway_station_path %>
+<%= link_to t('.add_station'), new_admin_railway_station_path %>

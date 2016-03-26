@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'searches#show'
 
   namespace :admin do
-    root 'welcome#index'
+    # root 'searches#show'
 
     resources :railway_stations do
       patch :update_position, on: :member

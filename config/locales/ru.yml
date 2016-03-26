@@ -1,11 +1,20 @@
 ru:
   common:
     back: 'Назад'
+    edit: 'Редактировать'
+    show: 'Показать'
+    delete: 'Удалить'
+    confirm: 'Вы уверены?'
     errors: 'При заполнении формы возникли ошибки'
   admin:
     railway_stations:
       new:
         title: 'Создать станцию'
+      edit:
+        title: 'Редактировать станцию'
+      index:
+        title: 'Станции'
+        add_station: 'Добавить станцию'
       form:
         submit: '%{action} станцию'
     routes:
@@ -18,3 +27,7 @@ ru:
         title: 'Создать поезд'
       form:
         submit: '%{action} поезд'
+    wagons:
+      form:
+        train_id: 'Поезд'
+        submit: '%{action} вагон'

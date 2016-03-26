@@ -4,23 +4,23 @@
     <%= render 'common/errors', resource: @ticket %>
 
     <div class="field">
-      <%= f.label :user_name, 'ФИО пассажира' %><br>
+      <%= f.label :user_name %><br>
       <%= f.text_field :user_name %>
     </div>
 
     <div class="field">
-      <%= f.label :train, 'Поезд' %>
+      <%= f.label :train %>
       <%= f.collection_select :train_id, Train.all, :id, :number %>
     </div>
 
 
     <div class="field">
-      <%= f.label :start_station, 'Станция отправления' %>
+      <%= f.label :start_station %>
       <%= f.collection_select :start_station_id, RailwayStation.all, :id, :title %>
     </div>
 
     <div class="field">
-      <%= f.label :end_station, 'Станция прибытия' %>
+      <%= f.label :end_station %>
       <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title %>
     </div>
 

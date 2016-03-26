@@ -5,7 +5,7 @@
   <td><%= ticket.end_station.title %></td>
   <td><%= ticket.user.name if ticket.user.present? %></td>
   <td><%= ticket.user_name %></td>
-  <td><%= link_to 'Просмотр', [:admin, ticket] %></td>
-  <td><%= link_to 'Изменить', edit_admin_ticket_path(ticket) %></td>
-  <td><%= link_to 'Удалить', [:admin, ticket], method: :delete, data: {confirm: 'Вы уверены?'} %></td>
+  <td><%= link_to t('common.show'), [:admin, ticket] %></td>
+  <td><%= link_to t('common.edit'), edit_admin_ticket_path(ticket) %></td>
+  <td><%= link_to t('common.delete'), [:admin, ticket], method: :delete, data: {confirm: 'Вы уверены?'} %></td>
 </tr>
